@@ -1,25 +1,39 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
-int main(void) {
-	int t;
-	scanf("%d",&t);
-	while(t--){
-	    int n,m,flag=0;
-	    scanf("%d%d",&n,&m);
-	    int t[m],r;
-	    for(int i=1;i<=m;i++)
-	    t[i]=0;
-	    for(int i=0;i<n;i++){
-	        scanf("%d",&r);
-	        t[r]=1;
-	    }
-	    for(int i=1;i<=m;i++){
-	        if(t[i]==0)
-	        flag=1;
-	    }
-	    if(flag==1) printf("Yes\n");
-	    else printf("No\n");
-	    
-	}
-	return 0;
+
+int main(int argc, char *argv[])
+{
+  float valueOne;
+  float valueTwo;
+  char operator;
+  float answer;
+
+  printf("Enter calculation:\n\n");
+  scanf("%f %c %f", &valueOne, &operator, & valueTwo);
+
+  switch(operator)
+    {
+    case '/': answer = valueOne/valueTwo;
+      break;
+    case '*': answer = valueOne*valueTwo;
+      break;
+    case '+': answer = valueOne+valueTwo;
+      break;
+    case '-': answer = valueOne-valueTwo;
+      break;
+    case '^': answer = pow(valueOne,valueTwo);
+      break;
+    case ' ': answer = sqrt(valueTwo);
+      break;
+    default: goto fail;
+    }
+  printf("%.9g%c%.9g =  %.6g\n\n",valueOne,operator, valueTwo, answer);
+  goto exit;
+ fail:
+  printf("Fail.\n");
+ exit:
+  return 0;
 }
